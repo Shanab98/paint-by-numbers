@@ -7,7 +7,7 @@ export class UserController {
     const { userId } = ctx.params;
 
     try {
-      ctx.body = await this.userService.getUser(userId);
+      ctx.body = await this.userService.getUserById(userId);
       ctx.status = 200;
     } catch (err) {
       console.log(err, ctx);

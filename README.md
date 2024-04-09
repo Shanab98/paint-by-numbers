@@ -5,11 +5,16 @@ Our software will generate this portrait.
 Users can save this to their profile, view all custom portraits on their profile, and browse standard drawings that we have available. 
 
 
+## Env configurations
+Make sure to have the DATABASE_URL env variable set correctly
+
 ## Database migrations
 knexfile.ts configures the database settings for each environment 
 
 to create a new migration file, run:
 `knex migrate:make migration_name -x ts` 
+
+ensure mysql is running (`brew services start mysql@5.7`)
 
 to migrate latest run: 
 `knex migrate:latest`
@@ -18,7 +23,11 @@ to rollback last batch of migrations, run:
 `knex migrate:rollback`
 
 
-## Docker compose 
+## Using Docker compose 
+Note: This doesn't work fully. I can get it running but haven't figured out how run the database migrations through it using knex. 
+
+Ensure Docker is running on your desktop.
+
 To run your local dev, you can run `docker-compose -f docker-compose.yml up -d`
 
   To ensure it spins up the database correctly, run: 
@@ -37,3 +46,5 @@ If you want to use a MySQL Client GUI like MySQLWorkbench to view the docker dat
 - password: rootpassword (note that this was setup in the docker-compose.yml environment variables)
 
 
+My Notes: 
+- docker compose is adding a bunch of files to the mysql folder. Sometimes the docker compose up command fails - wiping this folder and trying again seems to do the trick but I don't know why.
