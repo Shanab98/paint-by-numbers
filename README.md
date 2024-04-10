@@ -1,9 +1,9 @@
-# paint-by-numbers
+# [WIP] paint-by-numbers
 
-Users can upload an image and request a Paint By Numbers portrait. 
-Our software will generate this portrait. 
-Users can save this to their profile, view all custom portraits on their profile, and browse standard drawings that we have available. 
-
+Once this project is complete:
+- Users can upload an image and request a Paint By Numbers portrait. 
+- Our software will generate this portrait. 
+- Users can save this to their profile, view all custom portraits on their profile, and browse standard drawings that we have available. 
 
 ## Env configurations
 Make sure to have the DATABASE_URL env variable set correctly
@@ -24,8 +24,6 @@ to rollback last batch of migrations, run:
 
 
 ## Using Docker compose 
-Note: This doesn't work fully. I can get it running but haven't figured out how run the database migrations through it using knex. 
-
 Ensure Docker is running on your desktop.
 
 To run your local dev, you can run `docker-compose -f docker-compose.yml up -d`
@@ -45,6 +43,6 @@ If you want to use a MySQL Client GUI like MySQLWorkbench to view the docker dat
 - username: root
 - password: rootpassword (note that this was setup in the docker-compose.yml environment variables)
 
-
-My Notes: 
-- docker compose is adding a bunch of files to the mysql folder. Sometimes the docker compose up command fails - wiping this folder and trying again seems to do the trick but I don't know why.
+TODO: 
+- run the knex database migrations through docker
+- docker compose is adding files to the mysql folder. Sometimes the docker compose up command fails - wiping this folder and trying again seems to do the trick. Investigate this issue.
