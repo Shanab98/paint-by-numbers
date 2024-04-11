@@ -1,7 +1,6 @@
 import type { Knex } from "knex";
 require('dotenv').config()
 
-// Update with your config settings.
 const config: { [key: string]: Knex.Config } = {
   development: {
     client: "mysql",
@@ -9,5 +8,3 @@ const config: { [key: string]: Knex.Config } = {
     debug: true
   },
 }
-
-export default config;

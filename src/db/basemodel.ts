@@ -25,6 +25,7 @@ export abstract class BaseModel<Entry, EntryData> {
   }
 
   async findAllWhere(where: Partial<Entry>): Promise<Entry> {
+    //TODO: add limit and offset
     return (await this.knex(this.tableName).where(where)) as Entry;
   }
 

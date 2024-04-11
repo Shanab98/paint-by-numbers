@@ -13,6 +13,21 @@
     "fix": "npm run style-fix && npm run lint-fix",
     "jest": "jest uspec --maxWorkers=2 --detectOpenHandles"
   },
+  "jest": {
+    "automock": false,
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|src.*?\\.(ispec|uspec))\\.(ts)$",
+    "testEnvironment": "node",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  },
   "dependencies": {
     "@koa/router": "^12.0.1",
     "dotenv": "^16.4.5",
