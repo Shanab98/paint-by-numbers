@@ -1,5 +1,8 @@
 import type { Knex } from "knex";
-require('dotenv').config()
+import dotenv from 'dotenv';
+
+// Load environment variables from the .env file
+dotenv.config();
 
 const config: { [key: string]: Knex.Config } = {
   development: {
