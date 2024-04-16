@@ -11,3 +11,5 @@ const config: { [key: string]: Knex.Config } = {
     debug: true
   },
 }
+
+export default config

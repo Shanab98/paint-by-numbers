@@ -7,18 +7,21 @@ describe("BaseModel", () => {
   const user1 = {
     username: "testuser1",
     password: "testpass",
+    email: "testemail1",
     isActive: true,
   };
 
   const user2 = {
     username: "testuser2",
     password: "testpass",
+    email: "testemail2",
     isActive: true,
   };
 
   const user3 = {
     username: "testuser3",
     password: "testpass",
+    email: "testemail3",
     isActive: false,
   };
 

@@ -1,6 +1,7 @@
 export type UserData = {
   readonly username: string;
   readonly password: string;
+  readonly email: string;
   readonly isActive: boolean;
 };
 

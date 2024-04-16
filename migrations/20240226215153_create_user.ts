@@ -3,9 +3,10 @@ import type { Knex } from "knex";
 export async function up(knex: Knex): Promise<void> {
   return knex.schema
     .createTable('User', function (table) {
-      table.increments('id');
-      table.string('username');
-      table.string('password');
+      table.increments('id').primary();
+      table.string('username', 50).unique();
+      table.string('password', 50);
+      table.string('email', 320).unique();
       table.boolean('isActive');
       table
         .timestamp('createdAt')
