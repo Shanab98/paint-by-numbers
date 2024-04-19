@@ -7,11 +7,11 @@ dotenv.config();
 const dbConfig = {
   client: "mysql",
   connection: process.env.DATABASE_URL,
-  debug: true,
+  debug: false,
 };
 
 export const knexInstance = knex(dbConfig);
 
-export const closeConnections = async () => {
+export async function closeConnections() {
   await knexInstance.destroy();
-};
+}

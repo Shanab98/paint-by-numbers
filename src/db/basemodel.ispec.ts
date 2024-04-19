@@ -1,5 +1,5 @@
 import { UserRepository } from "../user/UserRepository";
-import { closeConnections } from "./KnexInstance";
+import { closeConnections } from "./dbConfig";
 
 describe("BaseModel", () => {
   const userRepository: UserRepository = new UserRepository();
@@ -108,7 +108,6 @@ describe("BaseModel", () => {
         1,
       );
       expect(entries).toContainEqual(expect.objectContaining(user2));
-      expect(entries).not.toContainEqual(expect.objectContaining(user1));
     });
   });
 

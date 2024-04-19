@@ -2,31 +2,27 @@ import { UserRepository } from "./UserRepository";
 import { User, UserData } from "./User";
 
 export class UserService {
-  userRepository = new UserRepository();
+  constructor(private userRepository = new UserRepository()) {}
 
-  public async createUser(user: UserData) {
-    const ctx = { fn: "createUser", user };
+  public async createUser(username: string, password: string, email: string) {
+    const ctx = { fn: "createUser", username, password, email };
     console.log(ctx, "Starting");
 
-    const createdUser = await this.userRepository.saveOne(user);
-    console.log({ ctx, createdUser }, "Created user");
+    return await this.userRepository.saveOne({
+      username,
+      password,
+      email,
+      isActive: true,
+    });
   }
 
-  public async getUser(filter: Partial<User>) {
+  public async getUser(filter: Partial<User>): Promise<User | undefined> {
     const ctx = { fn: "getUser", filter };
     console.log(ctx, "Starting");
 
     const user = await this.userRepository.findOneWhere(filter);
     console.log({ ctx, user }, "Retrieved user");
-  }
-
-  //TODO: remove this method eventually, solely here to test non-basemodel method
-  public async getUserById(userId: number) {
-    const ctx = { fn: "getUserById", userId };
-    console.log(ctx, "Starting");
-
-    const user = await this.userRepository.findById(userId);
-    console.log({ ctx, user }, "Retrieved user");
+    return user;
   }
 
   public async updateUserByUsername(

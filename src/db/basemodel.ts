@@ -1,43 +1,41 @@
 import { Knex } from "knex";
-import { knexInstance } from "../db/KnexInstance";
+import { knexInstance } from "./dbConfig";
 
 export abstract class BaseModel<Entry, EntryData> {
   constructor(
     public readonly tableName: string,
     public readonly booleanColumns: string[],
-    public readonly knex: Knex = knexInstance,
+    public readonly Db: Knex = knexInstance,
   ) {
     this.tableName = tableName;
-    this.knex = knex;
+    this.Db = Db;
   }
 
-  async saveOne(entry: EntryData): Promise<Entry> {
-    const [createdEntry] = await this.knex(this.tableName).insert(entry);
-    return createdEntry as Entry;
+  public async saveOne(entry: EntryData) {
+    return this.Db(this.tableName).insert(entry);
   }
 
-  async saveAll(entries: EntryData[]) {
-    return this.knex(this.tableName).insert(entries);
+  public async saveAll(entries: EntryData[]) {
+    return this.Db(this.tableName).insert(entries);
   }
 
-  async deleteAllWhere(where: Partial<Entry>) {
-    return this.knex(this.tableName).where(where).del();
+  public async deleteAllWhere(where: Partial<Entry>) {
+    return this.Db(this.tableName).where(where).del();
   }
 
-  async findOneWhere(where: Partial<Entry>): Promise<Entry> {
-    const entry = (await this.knex(this.tableName)
+  public async findOneWhere(where: Partial<Entry>): Promise<Entry> {
+    return (await this.Db(this.tableName)
       .where(where)
       .first()
       .then((row) => (row ? this.castBooleanValues(row) : undefined))) as Entry;
-    return entry;
   }
 
-  async findAllWhere(
+  public async findAllWhere(
     where: Partial<Entry>,
     limit: number = 200,
     offset: number = 0,
   ): Promise<Entry[]> {
-    return (await this.knex(this.tableName)
+    return (await this.Db(this.tableName)
       .where(where)
       .limit(limit)
       .offset(offset)
@@ -46,8 +44,8 @@ export abstract class BaseModel<Entry, EntryData> {
       )) as Entry[];
   }
 
-  async updateWhere(where: Partial<Entry>, update: Partial<Entry>) {
-    return this.knex(this.tableName).where(where).update(update);
+  public async updateWhere(where: Partial<Entry>, update: Partial<Entry>) {
+    return this.Db(this.tableName).where(where).update(update);
   }
 
   private castBooleanValues(entry: Entry): Entry {
