@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: paint_by_numbers_mysql_container
+    ports:
+      - "3307:3306" #used 3307 instead of 3306 for ease when creating a connection on MySQLWorkbench (since I already have a local db using this port)
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: paint-by-numbers-docker-db
+      MYSQL_USER: dockeruser
+      MYSQL_PASSWORD: dockerpassword
+    volumes:
+      - "./mysql:/var/lib/mysql:rw"
