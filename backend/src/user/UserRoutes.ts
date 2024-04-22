@@ -14,4 +14,7 @@ router.get("/v1/user/:username", async (ctx: Koa.Context) =>
   userController.getUser(ctx),
 );
 
+router.get("/v1/user/:username/password/:password", async (ctx: Koa.Context) =>
+  userController.getUserByCredentials(ctx),
+);
 export default router.routes();

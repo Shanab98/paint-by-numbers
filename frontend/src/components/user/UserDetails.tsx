@@ -28,7 +28,8 @@ export default function UserDetails() {
           value={username}
           onChange={handleInputChange}
           placeholder="Enter username"
-        />
+        >
+        </input>
        <button type="submit">Submit</button>
       </form>
       
@@ -38,6 +39,7 @@ export default function UserDetails() {
             <h2>User Details</h2>
             <p>ID: {user.id}</p>
             <p>Username: {user.username}</p>
+            <p>Password: {user.password}</p>
             <p>Email: {user.email}</p>
           </div>
         ) : (

@@ -39,4 +39,17 @@ export class UserController {
       ctx.throw(500);
     }
   }
+
+  public async getUserByCredentials(ctx: Koa.Context) {
+    const { username, password } = ctx.params;
+
+    try {
+      const user = await this.userService.getUser({ username, password });
+      ctx.status = 200;
+      ctx.body = user;
+    } catch (err) {
+      console.log(err, ctx);
+      ctx.throw(500);
+    }
+  }
 }
